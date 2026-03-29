@@ -7,7 +7,7 @@ struct BrowserSwitcherApp: App {
     @AppStorage("showMenuBarIcon") private var showMenuBarIcon = true
 
     var body: some Scene {
-        MenuBarExtra("Browser Switcher", systemImage: "globe", isInserted: $showMenuBarIcon) {
+        MenuBarExtra("Browser Switcher", systemImage: "arrow.trianglehead.2.counterclockwise", isInserted: $showMenuBarIcon) {
             MenuBarView(appDelegate: appDelegate)
         }
 

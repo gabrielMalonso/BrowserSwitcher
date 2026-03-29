@@ -11,7 +11,11 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "BrowserSwitcher",
-            dependencies: ["KeyboardShortcuts"]
+            dependencies: ["KeyboardShortcuts"],
+            resources: [
+                .copy("Resources/MenuBarIcon.svg"),
+                .copy("Resources/AppIcon.icns"),
+            ]
         ),
     ]
 )

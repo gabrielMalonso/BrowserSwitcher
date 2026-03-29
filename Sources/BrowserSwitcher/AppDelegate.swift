@@ -17,6 +17,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
 
+        if let icnsURL = Bundle.module.url(forResource: "AppIcon", withExtension: "icns"),
+           let icon = NSImage(contentsOf: icnsURL) {
+            NSApp.applicationIconImage = icon
+        }
+
         KeyboardShortcuts.onKeyDown(for: .switchBrowser) { [weak self] in
             self?.togglePanel()
         }

@@ -4,9 +4,10 @@ import KeyboardShortcuts
 @main
 struct BrowserSwitcherApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @AppStorage("showMenuBarIcon") private var showMenuBarIcon = true
 
     var body: some Scene {
-        MenuBarExtra("Browser Switcher", systemImage: "globe") {
+        MenuBarExtra("Browser Switcher", systemImage: "globe", isInserted: $showMenuBarIcon) {
             MenuBarView(appDelegate: appDelegate)
         }
 

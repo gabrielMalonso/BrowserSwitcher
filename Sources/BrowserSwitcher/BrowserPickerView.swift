@@ -42,14 +42,31 @@ struct BrowserPickerView: View {
                 .padding(8)
             }
 
-            // Feedback
-            if let feedback {
-                Divider()
-                Text(feedback)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(.vertical, 8)
+            // Footer
+            Divider()
+            HStack {
+                if let feedback {
+                    Text(feedback)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                SettingsLink {
+                    Image(systemName: "gearshape")
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .onHover { hovering in
+                    if hovering {
+                        NSCursor.pointingHand.push()
+                    } else {
+                        NSCursor.pop()
+                    }
+                }
             }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
         }
         .frame(width: 340, height: 420)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))

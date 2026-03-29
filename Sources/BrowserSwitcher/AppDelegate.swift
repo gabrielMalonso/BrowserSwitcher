@@ -15,12 +15,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var isShowing = false
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // Hide from Dock and Cmd+Tab
         NSApp.setActivationPolicy(.accessory)
 
         KeyboardShortcuts.onKeyDown(for: .switchBrowser) { [weak self] in
             self?.togglePanel()
         }
+    }
+
+    /// Called when the user re-opens the app (e.g. from Spotlight) while it's already running.
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        togglePanel()
+        return false
     }
 
     func togglePanel() {
@@ -37,7 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         self.panel = panel
 
-        // Center on the active screen
         if let screen = NSScreen.main {
             let screenFrame = screen.visibleFrame
             let panelFrame = panel.frame
